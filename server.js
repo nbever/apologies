@@ -3,12 +3,19 @@ const app = express()
 const port = 3000
 
 const { Client } = require('pg');
-const client = new Client({ssl: true});
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 client.connect();
 
 app.get('/test', async (req, res) => {
 
-  const obj = {who: 'me'};
+  const results = await client.query('SELECT * FROM users');
+
+  const obj = {rows: results.rows.length};
   res.send(obj);
 });
 
