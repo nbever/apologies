@@ -1,0 +1,8 @@
+{
+  "name": "Apologies",
+  "description": "A re-skinning of the game Sorry",
+  "repository": "https://github.com/nbever/apologies",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
+  "keywords": ["node", "express", "heroku", "sorry"],
+  "image": "heroku/nodejs"
+}
