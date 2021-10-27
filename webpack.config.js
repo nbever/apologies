@@ -20,6 +20,12 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader',
+        }
       }
     ]
   },
@@ -32,7 +38,12 @@ module.exports = {
     },
     compress: true,
     port: 9000,
-    historyApiFallback: true
+    historyApiFallback: {
+      rewrites: [
+        { from: /.*main.js/, to: '/main.js' },
+        { from: /.*/, to: '/' }
+      ]
+    }
   },
   plugins: [new HtmlWebpackPlugin({
     title: 'Apologies',

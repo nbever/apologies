@@ -7,7 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "build": "webpack --mode=development",
+    "start": "npm run build && node server.js",
     "serve:web": "webpack serve --progress"
   },
   "devDependencies": {
@@ -18,6 +19,7 @@
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.3",
     "html-webpack-plugin": "^5.5.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.3.1"
@@ -34,11 +36,24 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.4",
+    "@mui/system": "^5.0.4",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "lodash": "^4.17.21",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0"
+    "react-measure": "^2.5.2",
+    "react-router-dom": "^5.3.0",
+    "save": "^2.4.0",
+    "uuid": "^3.4.0"
   }
 }
