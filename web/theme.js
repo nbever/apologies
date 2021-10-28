@@ -1,4 +1,6 @@
-export const theme = {
+import {createTheme, responsiveFontSizes} from '@mui/material/styles';
+
+export const theme = responsiveFontSizes(createTheme({
   palette: {
     primary: {
       main: '#1975bc',
@@ -9,10 +11,14 @@ export const theme = {
       contrastText: '#ffffff'
     }
   },
-  typography: {
-    fontSize: 24
+  components: {
+    MuiButton: {
+      styleOverrides: {
+
+      }
+    }
   }
-};
+}));
 
 export const fullScreen = {
   width: '100%',
@@ -42,4 +48,17 @@ export const stiff = {
 
 export const center = {
   alignItems: 'center'
+};
+
+export const buffer = {
+  paddingTop: '4px',
+  paddingBottom: '4px'
+};
+
+export const bigTopBuffer = {
+  paddingTop: '20px'
+};
+
+export const pagePadding = {
+  padding: '24px'
 };

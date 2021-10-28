@@ -18,6 +18,7 @@ import SignUp from './SignUp';
 
 const builtTheme = createTheme(theme);
 
+
 const App = () => {
 
   return (
@@ -30,7 +31,7 @@ const App = () => {
               <Route path="/login" exact component={LoginPage} />
               <Route path="/app" component={LoggedInPage} />
               <Route path="/createAccount" component={SignUp} />
-              <Redirect to="/app"/>
+              <Redirect to="/app/dashboard"/>
             </Switch>
           </AuthContextProvider>
         </LoadingProvider>

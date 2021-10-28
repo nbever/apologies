@@ -1,0 +1,46 @@
+{
+ "short_name": "Sorry",
+ "name": "Sorry",
+ "icons": [
+   {
+       "src": "/pawn.png",
+       "sizes": "256x256",
+       "type": "image/png"
+   },
+   {
+       "src": "/blue_pawn.png",
+       "sizes": "128x160",
+       "type": "image/png"
+   },
+   {
+       "src": "/red_pawn.png",
+       "sizes": "128x160",
+       "type": "image/png"
+   },
+   {
+       "src": "/green_pawn.png",
+       "sizes": "128x160",
+       "type": "image/png"
+   },
+   {
+       "src": "/yellow_pawn.png",
+       "sizes": "128x160",
+       "type": "image/png"
+   },
+   {
+       "src": "/board.jpg",
+       "sizes": "1488x1500",
+       "type": "image/jpg"
+   },
+   {
+       "src": "/gamebox.png",
+       "sizes": "446x500",
+       "type": "image/png"
+   }
+ ],
+ "start_url": "/login",
+ "theme_color": "#1975bc",
+ "background_color": "#c9c9c9",
+ "display": "standalone",
+ "scope": "/"
+}

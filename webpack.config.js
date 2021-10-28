@@ -1,11 +1,15 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './web/index.js',
+  entry: {
+    main: './web/index.js',
+    worker: './web/worker.js'
+  },
   mode: 'development',
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'web', 'dist'),
   },
   devtool: 'eval-source-map',
@@ -22,7 +26,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /\.(jpg|png|gif)$/,
         use: {
           loader: 'url-loader',
         }
@@ -45,9 +49,16 @@ module.exports = {
       ]
     }
   },
-  plugins: [new HtmlWebpackPlugin({
-    title: 'Apologies',
-    favicon: path.resolve(__dirname, 'web', 'images', 'pawn.png'),
-    template: path.resolve(__dirname, 'web/index.html')
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Apologies',
+      favicon: path.resolve(__dirname, 'web', 'images', 'pawn.png'),
+      template: path.resolve(__dirname, 'web/index.html')
+    }),
+    new CopyPlugin({
+      patterns: [
+        {from: './manifest.json', to: path.resolve(__dirname, 'web', 'dist')}
+      ],
+    })
+  ],
 };
