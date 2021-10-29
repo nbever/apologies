@@ -102,6 +102,17 @@ app.get('/api/findUsers/:searchTerm', async (req, resp) => {
   resp.send(results);
 });
 
+app.get('/api/friends', async (req,res) => {
+  const friends = await getFriends(req.session.user.user_id);
+  res.send(friends);
+});
+
+const getFriends = async (user_id) => {
+  
+  const results = await client.query('SELECT users.user_id, users.username, users.email FROM users INNER JOIN user_friends ON users.user_id = user_friends.friends_id WHERE user_friends.user_id = $1', [user_id]);
+  return results.rows;
+};
+
 /** create a new account **/
 app.post('/open/createAccount', async (req, resp) => {
 
@@ -114,6 +125,43 @@ app.post('/open/createAccount', async (req, resp) => {
   catch (e) {
     resp.status(401).send(`Failed to create account: ${e}`);
   }
+
+  resp.send(OK);
+});
+
+app.post('/api/friends', async (req, resp) => {
+
+  const {friendIds} = req.body;
+  const user = req.session.user;
+
+  const toSave = friendIds.filter((id) => {
+    return id !== user.user_id;
+  });
+
+  try {
+    await client.query('BEGIN');
+    const promises = toSave.map((anId) => {
+      return client.query('INSERT INTO user_friends(user_id, friends_id) VALUES($1, $2)', [user.user_id, anId]);
+    });
+
+    await Promise.all(promises);
+    await client.query('COMMIT');
+  }
+  catch (err) {
+    console.log(`error: ${err}`);
+    await client.query('ROLLBACK');
+  }
+
+  resp.send(OK);
+
+});
+
+/** Deletions **/
+app.delete('/api/friends/:friendId', async (req, resp) => {
+
+  const {friendId} = req.params;
+
+  await client.query('DELETE FROM user_friends WHERE user_id = $1 AND friends_id = $2', [req.session.user.user_id, friendId]);
 
   resp.send(OK);
 });

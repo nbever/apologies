@@ -1,6 +1,6 @@
 import {createContext, useContext} from 'react';
 
-import {AuthContext, GET} from '../AuthContext';
+import {AuthContext, GET, POST, DELETE} from '../AuthContext';
 
 const GameContext = createContext({});
 
@@ -13,8 +13,27 @@ const GameContextProvider = ({children}) => {
     return matches;
   };
 
+  const addFriends = async (friendIdList) => {
+
+    await authFetch(`/api/friends`, POST, {
+      friendIds: friendIdList
+    });
+  };
+
+  const removeFriend = async (friend_id) => {
+    await authFetch(`/api/friends/${friend_id}`, DELETE);
+  };
+
+  const getMyFriends = async () => {
+    const friends = await authFetch('/api/friends', GET);
+    return friends;
+  };
+
   const context = {
-    findUsers
+    findUsers,
+    addFriends,
+    getMyFriends,
+    removeFriend
   };
 
   return (

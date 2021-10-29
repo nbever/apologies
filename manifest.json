@@ -36,6 +36,11 @@
        "src": "/gamebox.png",
        "sizes": "446x500",
        "type": "image/png"
+   },
+   {
+      "src": "/sorry-logo.png",
+      "sizes": "92x92",
+      "type": "image/png"
    }
  ],
  "start_url": "/login",

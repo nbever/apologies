@@ -56,6 +56,12 @@ const LoginPage = () => {
     formStyle.maxWidth = '400px';
   }
 
+  const typed = ($e) => {
+    if ($e.keyCode === 13) {
+      loginClicked();
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -81,7 +87,7 @@ const LoginPage = () => {
           <img src={GameBox} height="128" width="128"/>
         </Box>
         <Box sx={buffer}><TextField id="txt_username" label="Username" value={username} onChange={textFieldChanged(setUsername)} fullWidth/></Box>
-        <Box sx={buffer}><TextField id="txt_password" label="Password" type="password" value={password} onChange={textFieldChanged(setPassword)} fullWidth/></Box>
+        <Box sx={buffer}><TextField id="txt_password" label="Password" type="password" value={password} onChange={textFieldChanged(setPassword)} fullWidth onKeyUp={typed}/></Box>
         {
           error === true &&
           <Alert severity="error">Login Failed</Alert>

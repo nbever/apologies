@@ -42,6 +42,7 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.4",
     "@mui/system": "^5.0.4",
+    "@mui/x-data-grid": "^5.0.0-beta.5",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

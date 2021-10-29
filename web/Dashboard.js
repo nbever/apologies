@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import AddLocationTwoToneIcon from '@mui/icons-material/AddLocationTwoTone';
 import EmojiEmotions from '@mui/icons-material/EmojiEmotions';
 
-import {bigTopBuffer, row} from './theme';
+import {bigTopBuffer, row, pagePadding} from './theme';
 
 const Dashboard = () => {
 
@@ -31,11 +31,11 @@ const Dashboard = () => {
   };
 
   return (
-    <Box>
+    <Box id="dashboard" sx={{...pagePadding}}>
       <Box>
-        <Words type="title">Welcome {user.username}!</Words> 
+        <Words variant="h3">Welcome {user.username}!</Words> 
       </Box>
-      <Box sx={{...row, justifyContent: 'space-around'}}>
+      <Box sx={{...row, justifyContent: 'space-around', ...bigTopBuffer}}>
         <Button variant="contained" startIcon={<AddLocationTwoToneIcon />} onClick={newGame}>
           Start a New Game
         </Button>
@@ -43,8 +43,8 @@ const Dashboard = () => {
           Manage Friend List
         </Button>
       </Box>
-      <Box sx={bigTopBuffer}>
-        <Words type="h2">Games In Progess</Words>
+      <Box sx={{...bigTopBuffer, textAlign: 'left'}}>
+        <Words variant="h5">Games In Progess</Words>
         {/* list goes here */}
       </Box>
     </Box>
