@@ -53,6 +53,8 @@ const SignUp = () => {
     formStyle.maxWidth = '400px';
   }
 
+  const isError = password !== passwordConfirm;
+
   return (
     <Box
       sx={{
@@ -79,12 +81,12 @@ const SignUp = () => {
             type="password" 
             value={passwordConfirm} 
             onChange={textFieldChanged(setPasswordConfirm)}
-            error={password !== passwordConfirm}
+            error={isError}
             helperText={password === passwordConfirm ? '' : 'Passwords must match.'}
             fullWidth
           />
         </Box>
-        <Box sx={buffer}><Button type="primary" onClick={doCreateAccount} variant="contained">Create Account</Button></Box>
+        <Box sx={buffer}><Button type="primary" onClick={doCreateAccount} variant="contained" disabled={isError}>Create Account</Button></Box>
         <Box sx={buffer}>
           <Link to="/login">Cancel</Link>
         </Box>

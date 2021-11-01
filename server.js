@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
+const { v4: uuidv4 } = require('uuid');
 
 const SALT_ROUNDS = 10;
 const OK = 'OK';
@@ -114,6 +115,32 @@ const getFriends = async (user_id) => {
 };
 
 /** create a new account **/
+app.post('/api/game', async (req, resp) => {
+  const {players} = req.body;
+  const userIds = players.map((player) => {
+    return player.user.user_id;
+  })
+  .join(' ');
+  const newId = uuidv4();
+  const playerString = JSON.stringify({players});
+  console.log(playerString);
+
+  try {
+    await client.query('INSERT INTO games (game_id, user_ids, state) VALUES ($1, $2, $3)', [
+      newId,
+      userIds,
+      JSON.stringify({
+        players
+      })
+    ]);
+  }
+  catch(err) {
+    console.log(err);
+  }
+
+  resp.send({gameId: newId});
+});
+
 app.post('/open/createAccount', async (req, resp) => {
 
   const {username, password, email} = req.body;

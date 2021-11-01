@@ -62,3 +62,7 @@ export const bigTopBuffer = {
 export const pagePadding = {
   padding: '24px'
 };
+
+export const inputPadding = {
+  paddingRight: '8px'
+};

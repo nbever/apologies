@@ -29,11 +29,21 @@ const GameContextProvider = ({children}) => {
     return friends;
   };
 
+  const createNewGame = async (players) => {
+    
+    const newGameId = await authFetch('/api/game', POST, {
+      players
+    });
+
+    return newGameId;
+  };
+
   const context = {
     findUsers,
     addFriends,
     getMyFriends,
-    removeFriend
+    removeFriend,
+    createNewGame
   };
 
   return (

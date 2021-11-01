@@ -36,7 +36,7 @@ const LoggedInPage = () => {
         <Box sx={stretch}>
           <Switch>
             <Route 
-              path="/app/game" 
+              path="/app/game/:gameId" 
               render={() => {
                 return <GameScreen />;
               }}

@@ -10,7 +10,7 @@ export const BOARD = 'BOARD';
 
 export const defaultPlayerState = {
   user: {
-    name: 'player0'
+    username: ''
   },
   color: RED,
   pieces: [
